@@ -1,7 +1,9 @@
 class Solution {
 public:
     int fib(int n) {
-     int prev2=0;
+        if(n<2)return n;
+        return fib(n-1)+fib(n-2);
+     /*int prev2=0;
      int prev=1;
      if(n<=1)
      return n;
@@ -10,6 +12,6 @@ public:
         prev2=prev;
         prev=curr;
     }
-    return prev;
+    return prev;*/
     }
 };
