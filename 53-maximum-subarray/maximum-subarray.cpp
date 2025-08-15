@@ -1,7 +1,17 @@
 class Solution {
 public:
     int maxSubArray(vector<int>& nums) {
-      int sum=0,maxi=INT_MIN;
+        int n =nums.size();
+        if(n==0)return 0;
+        vector<int>dp(n);
+        dp[0]=nums[0];
+        int maxi=dp[0];
+        for(int i=1;i<n;i++){
+            dp[i]=max(nums[i],nums[i]+dp[i-1]);
+            maxi=max(maxi,dp[i]);
+        }
+        return maxi;
+     /* int sum=0,maxi=INT_MIN;
       int n=nums.size();
       for(int i=0;i<n;i++){
             sum+=nums[i];
@@ -10,7 +20,7 @@ public:
                 sum=0;
             }
       }
-      return maxi;
+      return maxi;*/
       
       
       /* int n=nums.size();
