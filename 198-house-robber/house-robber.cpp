@@ -1,7 +1,20 @@
 class Solution {
 public:
+        int ab(vector<int>& nums,int i,vector<int>& dp){
+            if (i < 0) return 0;                        // no houses
+            if (i == 0) return nums[0];                 // one house
+            if (i == 1) return max(nums[0], nums[1]);   // two houses
+
+            if (dp[i] != -1) return dp[i];
+
+           return dp[i]= max(nums[i] + ab(nums, i - 2,dp),  // Rob this house
+                   ab(nums, i - 1,dp));
+        }
     int rob(vector<int>& nums) {
-       int n=nums.size();
+        int n=nums.size();
+        vector<int>dp(n,-1);
+        return ab(nums,n-1,dp);
+       /*int n=nums.size();
        if(n==0)return 0;
        if(n==1)return nums[0];
        int prev1=nums[0];
@@ -12,7 +25,7 @@ public:
             prev2 = curr;
         }
 
-        return prev2;
+        return prev2;*/
        
     }
 };
