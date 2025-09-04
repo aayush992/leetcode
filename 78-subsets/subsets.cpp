@@ -5,7 +5,6 @@ public:
             ans.push_back(ds);
             return ;
         }
-   
         print(index+1,nums,ans,ds,n);
         ds.push_back(nums[index]);
         print(index+1,nums,ans,ds,n);
