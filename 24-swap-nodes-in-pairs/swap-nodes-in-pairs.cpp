@@ -1,24 +1,31 @@
 class Solution {
 public:
     ListNode* swapPairs(ListNode* head) {
-        // Dummy node to simplify edge cases
-        ListNode dummy(0);
-        dummy.next = head;
-        ListNode* prev = &dummy;
+        // Edge case: 0 or 1 node
+        if (!head || !head->next) return head;
 
-        while (prev->next != nullptr && prev->next->next != nullptr) {
-            ListNode* first = prev->next;
-            ListNode* second = prev->next->next;
+        // New head will be the second node after first swap
+        ListNode* newHead = head->next;
+        ListNode* prev = nullptr;
+        ListNode* curr = head;
+
+        while (curr && curr->next) {
+            ListNode* nextPair = curr->next->next;
+            ListNode* second = curr->next;
 
             // Swap
-            first->next = second->next;
-            second->next = first;
-            prev->next = second;
+            second->next = curr;
+            curr->next = nextPair;
 
-            // Move prev forward for next swap
-            prev = first;
+            if (prev) {
+                prev->next = second;  // connect with previous swapped pair
+            }
+
+            // Move prev and curr forward
+            prev = curr;
+            curr = nextPair;
         }
 
-        return dummy.next;
+        return newHead;
     }
 };
