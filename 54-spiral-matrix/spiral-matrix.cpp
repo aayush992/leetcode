@@ -8,8 +8,8 @@ public:
         int left = 0, right = matrix[0].size() - 1;
         
         while (top <= bottom && left <= right) {
-            for (int j = left; j <= right; j++)
-                result.push_back(matrix[top][j]);
+            for (int i = left; i <= right; i++)
+                result.push_back(matrix[top][i]);
             top++;
             
             for (int i = top; i <= bottom; i++)
@@ -17,8 +17,8 @@ public:
             right--;
             
             if (top <= bottom) {
-                for (int j = right; j >= left; j--)
-                    result.push_back(matrix[bottom][j]);
+                for (int i = right; i >= left; i--)
+                    result.push_back(matrix[bottom][i]);
                 bottom--;
             }
             
