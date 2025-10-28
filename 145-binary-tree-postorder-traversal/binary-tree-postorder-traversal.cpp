@@ -11,19 +11,38 @@
  */
 class Solution {
 public:
-     void solve(TreeNode* root,vector<int>&result)
-     {
-         if(root==NULL)
-             return;
-         solve(root->left,result);
-            solve(root->right,result);
-         result.push_back(root->val);
-      
-        
-      }
+    void solve(TreeNode* root, vector<int>& result) {
+        if (!root) return;
+
+        stack<TreeNode*> st;
+        TreeNode* curr = root;
+        TreeNode* prev = nullptr; // previously processed node
+
+        while (!st.empty() || curr != nullptr) {
+            // reach the leftmost node
+            while (curr != nullptr) {
+                st.push(curr);
+                curr = curr->left;
+            }
+
+            TreeNode* top = st.top();
+
+            // if right child is null or already processed, process current node
+            if (top->right == nullptr || top->right == prev) {
+                result.push_back(top->val);
+                st.pop();
+                prev = top;
+            } 
+            else {
+                // otherwise, move to right subtree
+                curr = top->right;
+            }
+        }
+    }
+
     vector<int> postorderTraversal(TreeNode* root) {
-         vector<int>result;
-        solve(root,result);
+        vector<int> result;
+        solve(root, result);
         return result;
     }
 };
