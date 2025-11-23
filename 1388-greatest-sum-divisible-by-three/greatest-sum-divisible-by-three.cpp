@@ -2,24 +2,24 @@ class Solution {
 public:
     int maxSumDivThree(vector<int>& nums) {
         int n = nums.size();
+
         vector<vector<int>> dp(n + 1, vector<int>(3, INT_MIN));
 
-        // base condition: at idx = n, mod = 0 → sum = 0
+        // base case: at i = n, remainder 0 gives sum 0
         dp[n][0] = 0;
 
-        // build from bottom to top
-        for (int idx = n - 1; idx >= 0; idx--) {
-            for (int mod = 0; mod < 3; mod++) {
+        for (int i = n - 1; i >= 0; i--) {
+            for (int j = 0; j < 3; j++) {
 
                 int include = INT_MIN;
-                int nextMod = (mod + nums[idx] % 3) % 3;
+                int nextMod = (j + nums[i] % 3) % 3;
 
-                if (dp[idx + 1][nextMod] != INT_MIN)
-                    include = nums[idx] + dp[idx + 1][nextMod];
+                if (dp[i + 1][nextMod] != INT_MIN)
+                    include = nums[i] + dp[i + 1][nextMod];
 
-                int exclude = dp[idx + 1][mod];
+                int exclude = dp[i + 1][j];
 
-                dp[idx][mod] = max(include, exclude);
+                dp[i][j] = max(include, exclude);
             }
         }
 
