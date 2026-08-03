@@ -18,7 +18,7 @@ public:
         return t[i][j]= max(one,two);
     }
     bool stoneGame(vector<int>& piles) {
-        int n=piles.size();
+       /* int n=piles.size();
 
         memset(t,-1,sizeof(t));
         
@@ -28,5 +28,7 @@ public:
         int b=sum-a;
         if(a>b)return true;
         else return false;
+        */
+        return true;
     }
 };
