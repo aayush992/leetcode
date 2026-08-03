@@ -1,40 +1,31 @@
-//Approach-1 (Using simple resurion + memoization)
 class Solution {
 public:
     int n;
-    vector<int> t;
-    
-    int solve(vector<int>& stoneValue, int i) {
-        if(i == n)
-            return 0;
+    vector<int>t;
+    int solve(vector<int>& stone, int i){
         
-        if(t[i] != -1)
-            return t[i];
-        
-        t[i] = stoneValue[i] - solve(stoneValue, i+1);
-        
-        if(i+1 < n)
-            t[i] = max(t[i], stoneValue[i] + stoneValue[i+1] - solve(stoneValue, i+2));
-        
-        if(i+2 < n)
-            t[i] = max(t[i], stoneValue[i] + stoneValue[i+1] + stoneValue[i+2] - solve(stoneValue, i+3));
-        
-        return t[i];
+        int result=INT_MIN;
+        if(i>=n)return 0;
+        if(t[i]!=-1)return t[i];
+        result=max(result,stone[i]-solve(stone,i+1));
+
+        if(i+1<n)
+        result=max(result,stone[i]+stone[i+1]-solve(stone,i+2));
+
+        if(i+2<n)
+        result=max(result,stone[i]+stone[i+1]+stone[i+2]-solve(stone,i+3));
+
+        return t[i]= result;
     }
-    
+
     string stoneGameIII(vector<int>& stoneValue) {
-        n = stoneValue.size();
-        t.resize(n+1, -1);
+        n=stoneValue.size();
+        t.resize(n+1,-1);
+        int b= solve(stoneValue,0);
+        if(b>0)return "Alice";
+        else if(b<0)return "Bob";
+        else return "Tie";
         
-        int diff =  solve(stoneValue, 0);
-        
-        if(diff < 0)
-            return "Bob";
-        else if(diff > 0)
-            return "Alice";
-        
-        return "Tie";
     }
 };
-
 
