@@ -6,8 +6,7 @@ public:
         if (i > j)
     return 0;
 
-       if (i == j)
-    return piles[i];
+       
 
     if(t[i][j]!=-1)return t[i][j];
 
@@ -19,7 +18,9 @@ public:
     }
     bool stoneGame(vector<int>& piles) {
         int n=piles.size();
+
         memset(t,-1,sizeof(t));
+        
         int sum =accumulate(begin(piles),end(piles),0);
         int a= solve(0,n-1,piles);
 
