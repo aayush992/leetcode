@@ -6,7 +6,8 @@ public:
         if (i > j)
     return 0;
 
-       
+       if (i == j)
+    return piles[i];
 
     if(t[i][j]!=-1)return t[i][j];
 
