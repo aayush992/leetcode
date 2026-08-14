@@ -20,18 +20,5 @@ public:
             j++;
         }
         return ans;
-
-
-
-      /*  for(int i=0; i<n; i++){
-            mp[s[i]]++;
-            sum++;
-            if(mp[s[i]]==2){
-                sum=0;
-                mp[s[i]]--;
-            }
-            ans=max(sum, ans);
-        }
-        return ans; */
     }
 };
