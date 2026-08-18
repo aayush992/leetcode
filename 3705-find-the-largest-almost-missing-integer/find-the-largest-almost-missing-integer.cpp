@@ -7,9 +7,9 @@ public:
         unordered_map<int,int>mp;
 
         while(j<n){
-        int k=0;
-        for(k=i;k<=j;k++){
-            mp[nums[k]]++;
+        int c=0;
+        for(c=i;c<=j;c++){
+            mp[nums[c]]++;
         }
         i++;
         j++;
