@@ -11,12 +11,12 @@ public:
                 buy=prices[i];
             }
             if(prices[i]>buy){
-                profit=prices[i]-buy;
+                profit+=prices[i]-buy;
                 totalProfit+=profit;
                 buy=prices[i];
             }
         
         }
- return totalProfit;
+ return profit;
     }
 };
